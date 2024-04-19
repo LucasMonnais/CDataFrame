@@ -6,4 +6,7 @@ set(CMAKE_C_STANDARD 11)
 add_executable(untitled main.c
         Tableau.c
         Tableau.h
+        column.c
+        cdataframe.c
+        cdataframe.h
 )
