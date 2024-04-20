@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include "column.h"
+#include "cdataframe.h"
 
 /* bonne chance a nous (36 pages :) */
 int main() {
+ /*
     COLUMN *mycol = create_column("My column");
     //printf("%s", mycol->titre);
     int test = 5;
@@ -20,6 +22,16 @@ int main() {
     //printf("%d", nombre);
     //recherche_position(mycol, 126);
     //printf("%d", nombre_valeurs_inferieures(mycol, 45));
+    */
+
+    int length_CDF = 5;
+    int length_col = 2;
+    COLUMN ** MyCDF = create_CDataFrame(length_CDF);
+    user_fill_CDataFrame(MyCDF, length_CDF, length_col);
+
+
+
+
     return 0;
 
 }
