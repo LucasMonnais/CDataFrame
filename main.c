@@ -24,6 +24,8 @@ int main() {
     //printf("%d", nombre_valeurs_inferieures(mycol, 45));
     */
 
+
+
     int length_CDF = 5;
     int length_col = 2;
     COLUMN ** MyCDF = create_CDataFrame(length_CDF);

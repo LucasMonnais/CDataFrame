@@ -99,4 +99,17 @@ void print_not_full_line(COLUMN ** CDF, int length_line){
     }
 }
 
+/*
+void add_column(COLUMN ** CDF,int *length_line, int length_col){
+    (*length_line)++;
+    int error = 0;
+    COLUMN ** temp = realloc(CDF, *length_line * sizeof(COLUMN) );
+    if(temp == NULL)
+    CDF[*length_line-1] = create_column("A" );
+    for(int j = 0; j<length_col; j++){
+        insert_value(CDF[*length_line], 0);
+    }
+
+}
+*/
 

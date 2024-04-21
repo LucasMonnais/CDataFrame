@@ -31,6 +31,9 @@ int insert_value(COLUMN* col, int value){
         if (temp == NULL){
             return 0;
         }
+        else{
+            col->donnees = temp;
+        }
 
 
     }
