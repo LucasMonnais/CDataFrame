@@ -34,9 +34,14 @@ int main() {
     //print_all_CDataFrame(MyCDF, length_CDF);
     //print_not_full_line(MyCDF, length_CDF);
     //print_not_full_column(MyCDF, length_CDF);
-    add_ligne_of_value(MyCDF , 5, length_CDF, &length_col);
+    //add_column(MyCDF, &length_CDF, length_col);
+    //del_column(MyCDF, &length_CDF);
+    //change_name(MyCDF, length_CDF);
+    //search_value_CDF(MyCDF, length_CDF);
+    //print_all_title(MyCDF, length_CDF);
+    add_line_of_value(MyCDF , 5, length_CDF, &length_col);
     print_all_CDataFrame(MyCDF, length_CDF);
-    //del_ligne_of_value(MyCDF, 2, length_CDF);
+    //del_line_of_value(MyCDF, 2, length_CDF);
     //print_all_CDataFrame(MyCDF, length_CDF);
 
     //replace_value(MyCDF , length_CDF);

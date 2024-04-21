@@ -99,54 +99,127 @@ void print_not_full_line(COLUMN ** CDF, int length_line){
     }
 }
 
-/*
+
 void add_column(COLUMN ** CDF,int *length_line, int length_col){
     (*length_line)++;
     int error = 0;
-    COLUMN ** temp = realloc(CDF, *length_line * sizeof(COLUMN) );
-    if(temp == NULL)
-    CDF[*length_line-1] = create_column("A" );
-    for(int j = 0; j<length_col; j++){
-        insert_value(CDF[*length_line], 0);
+    COLUMN * temp = realloc(*CDF, *length_line);
+    if(temp == NULL){
+        printf("Allocation Error : Error during column insertion");
+    }
+    else{
+        *CDF = temp;
+        CDF[*length_line-1] = create_column("A" );
+        for(int j = 0; j<length_col; j++){
+            int check = insert_value(CDF[*length_line], 0);
+            if(!check){
+                printf("Allocation Error : Error during value insertion");
+                break;
+            }
+        }
+    }
+}
+
+
+
+void del_column(COLUMN ** CDF, int *length_line){
+    int del_col;
+    printf("Donner la colonne à supprimer : ");
+    scanf(" %d", &del_col);
+    if (0 < del_col && del_col < *length_line){
+        int i = del_col;
+        while (i<*length_line-1){
+            for (int j = 0; j<CDF[i]->TL; j++){
+                CDF[i]->donnees[j] = CDF[i+1]->donnees[j];
+            }
+            i++;
+        }
+        delete_column(&CDF[*length_line]);
+        (*length_line)--;
+    }
+    else{
+        printf("This column does not exist");
     }
 
 }
-*/
-void add_ligne_of_value(COLUMN ** CDF , int value, int length_line, int *length_col){
+
+void change_name(COLUMN ** CDF, int length_line){
+    int col;
+    printf("choisir la colonne");
+    scanf(" %d", &col);
+    if (0 < col && col < length_line){
+        char new_title[256];
+        printf("choisir le nouveau nom");
+        gets(new_title);
+        CDF[col]->titre = new_title;
+    }
+    else{
+        printf("This column does not exist");
+    }
+}
+
+void search_value_CDF(COLUMN ** CDF, int length_line){
+    int value;
+    int found = 0;
+    printf("Quelle valeur cherchez-vous ? ");
+    scanf(" %d", &value);
+    for(int i = 0; i<length_line; i++){
+        for(int j = 0; j<CDF[i]->TL; j++){
+            if (CDF[i]->donnees[j] == value){
+                printf("found at coord [%d][%d]\n", i, j);
+                found = 1;
+            }
+        }
+    }
+    if(!found){
+        printf("%d not found", value);
+    }
+
+}
+
+void print_all_title(COLUMN ** CDF, int length_line){
+    for(int i = 0; i<length_line; i++){
+        printf("[%d] %s\n", i, CDF[i]->titre);
+    }
+}
+
+
+
+void add_line_of_value(COLUMN ** CDF , int value, int length_line, int *length_col){
     for (int col = 0; col<length_line; col++){
 
         insert_value(CDF[col], value);
-        length_col++;
+        (*length_col)++;
 
     }
 }
 
-void del_ligne_of_value(COLUMN ** CDF , int num_ligne, int length_line){
+void del_line_of_value(COLUMN ** CDF , int num_ligne, int length_line){
     int verif;
     for (int col = 0; col<length_line; col++){
 
         verif =delete_ligne(CDF[col], num_ligne);
         if (verif== 0){
-            printf("la ligne %d n'existe pas pour la collone %d \n", num_ligne, col);
+            printf("la ligne %d n'existe pas pour la colonne %d \n", num_ligne, col);
         }
     }
 }
 
 void replace_value(COLUMN ** CDF , int length_CDF){
     int ncol, line, value;
-    printf("veuillez saisir le numero de la collone a modifier: ");
+    printf("veuillez saisir le numero de la colonne a modifier: ");
     scanf("%d", &ncol);
     printf("veuillez saisir le numero de la ligne a modifier: ");
     scanf("%d", &line);
     printf("veuillez saisir la nouvelle valeure: ");
     scanf("%d", &value);
     if (length_CDF< ncol ){
-        printf("cette collone n'existe pas \n");
+        printf("cette colonne n'existe pas \n");
     }
     else {
         int verification = replace(CDF[ncol], line, value);
         if (verification == 0) {
-            printf("cette ligne n'existe pas dans cette collone \n");
+            printf("cette ligne n'existe pas dans cette colonne \n");
         }
 
     }
@@ -160,12 +233,12 @@ void affiche_nb_lignes (int length_col){
 }
 
 void affiche_nb_col (int length_CDF){
-    printf("le CDataframe est constitue de %d collone \n", length_CDF);
+    printf("le CDataframe est constitue de %d colonne \n", length_CDF);
 }
 
 int nombre_occurence_in_CD(COLUMN ** CDF,int length_line){
     int value;
-    printf("veuillez saisir la valeure chercher dans le CDataframe: ");
+    printf("veuillez saisir la valeur chercher dans le CDataframe: ");
     scanf("%d", &value);
     int nboccurencetot =0;
     for (int col = 0; col<length_line; col++){
@@ -175,16 +248,16 @@ int nombre_occurence_in_CD(COLUMN ** CDF,int length_line){
     return nboccurencetot;
 }
 
-int nombre_valeurs_supperieures_in_CD(COLUMN ** CDF,int length_line){
+int nombre_valeurs_superieures_in_CD(COLUMN ** CDF,int length_line){
     int value;
     printf("veuillez saisir la valeure chercher dans le CDataframe: ");
     scanf("%d", &value);
-    int nboccurencesupp =0;
+    int nboccurencesup =0;
     for (int col = 0; col<length_line; col++){
-        nboccurencesupp += nombre_valeurs_supperieures(CDF[col], value);
+        nboccurencesup += nombre_valeurs_supperieures(CDF[col], value);
     }
-    printf("il y a %d nombre superieurs a %d \n", nboccurencesupp, value);
-    return nboccurencesupp;
+    printf("il y a %d nombre superieurs a %d \n", nboccurencesup, value);
+    return nboccurencesup;
 }
 
 int nombre_valeurs_inferieures_in_CD(COLUMN ** CDF,int length_line){

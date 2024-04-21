@@ -48,7 +48,7 @@ void delete_column(COLUMN **col){
     free((*col)->donnees);
     (*col)->donnees = NULL;
     free(*col);
-    *col = NULL;  //Cette ligne est fausse erreur à creuser -> erreur corrigé le 20/04 : ajout de *
+    *col = NULL;
 }
 
 
@@ -71,7 +71,7 @@ int nombre_occurence(COLUMN* col, int x){
 
 int recherche_position(COLUMN* col, int x){
 
-    printf("[%d]  %d \n", x,  col->donnees[x]);   //pas col->donnees[x+1] ?
+    printf("[%d]  %d \n", x,  col->donnees[x]);
 
 }
 
