@@ -112,4 +112,89 @@ void add_column(COLUMN ** CDF,int *length_line, int length_col){
 
 }
 */
+void add_ligne_of_value(COLUMN ** CDF , int value, int length_line, int *length_col){
+    for (int col = 0; col<length_line; col++){
 
+        insert_value(CDF[col], value);
+        length_col++;
+
+    }
+}
+
+void del_ligne_of_value(COLUMN ** CDF , int num_ligne, int length_line){
+    int verif;
+    for (int col = 0; col<length_line; col++){
+
+        verif =delete_ligne(CDF[col], num_ligne);
+        if (verif== 0){
+            printf("la ligne %d n'existe pas pour la collone %d \n", num_ligne, col);
+        }
+    }
+}
+
+void replace_value(COLUMN ** CDF , int length_CDF){
+    int ncol, line, value;
+    printf("veuillez saisir le numero de la collone a modifier: ");
+    scanf("%d", &ncol);
+    printf("veuillez saisir le numero de la ligne a modifier: ");
+    scanf("%d", &line);
+    printf("veuillez saisir la nouvelle valeure: ");
+    scanf("%d", &value);
+    if (length_CDF< ncol ){
+        printf("cette collone n'existe pas \n");
+    }
+    else {
+        int verification = replace(CDF[ncol], line, value);
+        if (verification == 0) {
+            printf("cette ligne n'existe pas dans cette collone \n");
+        }
+
+    }
+}
+
+
+// 4 analyse et statistique
+
+void affiche_nb_lignes (int length_col){
+    printf("le CDataframe est constitue de %d ligne \n", length_col+ 1);
+}
+
+void affiche_nb_col (int length_CDF){
+    printf("le CDataframe est constitue de %d collone \n", length_CDF);
+}
+
+int nombre_occurence_in_CD(COLUMN ** CDF,int length_line){
+    int value;
+    printf("veuillez saisir la valeure chercher dans le CDataframe: ");
+    scanf("%d", &value);
+    int nboccurencetot =0;
+    for (int col = 0; col<length_line; col++){
+        nboccurencetot += nombre_occurence(CDF[col], value);
+    }
+    printf("La valeur %d apparait %d fois \n", value, nboccurencetot);
+    return nboccurencetot;
+}
+
+int nombre_valeurs_supperieures_in_CD(COLUMN ** CDF,int length_line){
+    int value;
+    printf("veuillez saisir la valeure chercher dans le CDataframe: ");
+    scanf("%d", &value);
+    int nboccurencesupp =0;
+    for (int col = 0; col<length_line; col++){
+        nboccurencesupp += nombre_valeurs_supperieures(CDF[col], value);
+    }
+    printf("il y a %d nombre superieurs a %d \n", nboccurencesupp, value);
+    return nboccurencesupp;
+}
+
+int nombre_valeurs_inferieures_in_CD(COLUMN ** CDF,int length_line){
+    int value;
+    printf("veuillez saisir la valeure chercher dans le CDataframe: ");
+    scanf("%d", &value);
+    int nboccurencesinf =0;
+    for (int col = 0; col<length_line; col++){
+        nboccurencesinf += nombre_valeurs_inferieures(CDF[col], value);
+    }
+    printf("il y a %d nombre inferieures a %d \n", nboccurencesinf, value);
+    return nboccurencesinf;
+}

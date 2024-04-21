@@ -47,6 +47,9 @@ int nombre_valeurs_supperieures(COLUMN* col, int x);
 
 int nombre_valeurs_inferieures(COLUMN* col, int x);
 
+int delete_ligne(COLUMN* col, int number_ligne);
+
+int replace(COLUMN* col, int position, int value);
 #endif //UNTITLED_COLUMN_H
 
 

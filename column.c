@@ -94,3 +94,26 @@ int nombre_valeurs_inferieures(COLUMN* col, int x){
     }
     return occ;
 }
+
+int delete_ligne(COLUMN* col, int number_ligne){
+    if( number_ligne+1> col->TL){
+        return 0;
+    }
+    else{
+        for (int i = number_ligne; i<col->TL -1; i++){
+            col->donnees[i]= col->donnees[i+1];
+        }
+        col->TL --;
+        return 1;
+    }
+}
+
+int replace(COLUMN* col, int position, int value){
+    if (position>col->TL - 1){
+        return 0;
+    }
+    else {
+        col->donnees[position]= value;
+        return 1;
+    }
+}

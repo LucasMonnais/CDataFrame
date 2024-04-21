@@ -31,12 +31,18 @@ int main() {
     COLUMN ** MyCDF = create_CDataFrame(length_CDF);
     //user_fill_CDataFrame(MyCDF, length_CDF, length_col);
     fill_CDataFrame(MyCDF, length_CDF, length_col);
+    //print_all_CDataFrame(MyCDF, length_CDF);
+    //print_not_full_line(MyCDF, length_CDF);
+    //print_not_full_column(MyCDF, length_CDF);
+    add_ligne_of_value(MyCDF , 5, length_CDF, &length_col);
     print_all_CDataFrame(MyCDF, length_CDF);
-    print_not_full_line(MyCDF, length_CDF);
-    print_not_full_column(MyCDF, length_CDF);
+    //del_ligne_of_value(MyCDF, 2, length_CDF);
+    //print_all_CDataFrame(MyCDF, length_CDF);
 
-
-
+    //replace_value(MyCDF , length_CDF);
+    //affiche_nb_col(length_CDF);
+    //affiche_nb_lignes(length_col);
+    int nbocctot = nombre_valeurs_inferieures_in_CD(MyCDF,length_CDF);
     return 0;
 
 }
