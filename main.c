@@ -27,8 +27,11 @@ int main() {
     int length_CDF = 5;
     int length_col = 2;
     COLUMN ** MyCDF = create_CDataFrame(length_CDF);
-    user_fill_CDataFrame(MyCDF, length_CDF, length_col);
-
+    //user_fill_CDataFrame(MyCDF, length_CDF, length_col);
+    fill_CDataFrame(MyCDF, length_CDF, length_col);
+    print_all_CDataFrame(MyCDF, length_CDF);
+    print_not_full_line(MyCDF, length_CDF);
+    print_not_full_column(MyCDF, length_CDF);
 
 
 

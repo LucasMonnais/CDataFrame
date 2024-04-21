@@ -40,12 +40,11 @@ void user_fill_CDataFrame(COLUMN ** CDF, int length_line, int length_column){
 
 
 void fill_CDataFrame(COLUMN ** CDF, int length_line, int length_column){
-    int value = 0;
     int error = 0;
     for (int i = 0; i<length_line ; i++){
         if(!error){
             for (int j = 0; j < length_column; j++){
-                if(!(insert_value(CDF[i], value))){
+                if(!(insert_value(CDF[i], 0))){
                     error = 1;
                     break;
                 }
@@ -68,32 +67,36 @@ void print_all_CDataFrame(COLUMN ** CDF,int length_line){
 
 void print_not_full_column(COLUMN ** CDF, int length_line){
     int limit;
-    printf("Saisir la limite de la colonne");
+    printf("Saisir la limite de la colonne : ");
     scanf(" %d", &limit);
-    if(0<limit<=length_line){
+    if(0<limit && limit<=length_line){
         for(int i = 0; i < limit; i++){
-            printf("[%d]", i);
+            printf("[i = %d]\n", i);
             print_col(CDF[i]);
         }
     }
     else{
-        printf("index Error : limit out of range");
+        printf("index Error : limit out of range\n");
     }
 }
 
 void print_not_full_line(COLUMN ** CDF, int length_line){
     int limit;
-    printf("Saisir la limite de la ligne");
+    printf("Saisir la limite de la ligne : ");
     scanf(" %d", &limit);
     for (int i = 0; i<length_line; i++){
-        if(0<limit<=CDF[i]->TL){
+        if(0<limit && limit<=CDF[i]->TL){ //ne fonctionne pas réellement pour cette fonction
             for(int j = 0; j<limit; j++){
+                //printf("a : %d", CDF[i]->TL);
                 printf("[%d][%d]  %d \n", i, j,  CDF[i]->donnees[j]);
             }
         }
         else{
-            printf("index Error : limit out of range");
+            printf("index Error : limit out of range\n");
             break;
+
         }
     }
 }
+
+

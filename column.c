@@ -24,23 +24,12 @@ int insert_value(COLUMN* col, int value){
         if(col->donnees == NULL){
             return 0; //imposibilité d'allouer de la mémoire = manque de mémoire
         }
-        else {
-            col->donnees[col->TL] = value;
-            col->TL++;
-            return 1;
-        }
     }
     if (col->TP == col->TL){
         col->TP += 256;
         int* temp = realloc(col->donnees, col->TP * sizeof(int));
         if (temp == NULL){
             return 0;
-        }
-        else {
-            col->donnees = temp;
-            col->donnees[col->TL] = value;
-            col->TL++;
-            return 1;
         }
 
 
