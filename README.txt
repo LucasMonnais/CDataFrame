@@ -27,3 +27,6 @@ Pour l'instant le tableau ne supporte que des entiers et nous avons pu implémen
 — Nombre de cellules contenant une valeur égale à x (x donné en paramètre)
 — Nombre de cellules contenant une valeur supérieure à x (x donné en paramètre)
 — Nombre de cellules contenant une valeur inférieure à x(x donné en paramètre)
+
+Fonctionnement :
+Exécuter le main.c et suivez les consignes affichées sur la console
