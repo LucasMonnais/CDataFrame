@@ -124,7 +124,7 @@ void add_column(COLUMN ** CDF,int *length_line, int length_col){
 
 void del_column(COLUMN ** CDF, int *length_line){
     int del_col;
-    printf("Donner la colonne à supprimer : ");
+    printf("Donner la colonne a supprimer : ");
     scanf(" %d", &del_col);
     if (0 < del_col && del_col < *length_line){
         int i = del_col;
@@ -229,11 +229,11 @@ void replace_value(COLUMN ** CDF , int length_CDF){
 // 4 analyse et statistique
 
 void affiche_nb_lignes (int length_col){
-    printf("le CDataframe est constitue de %d ligne \n", length_col+ 1);
+    printf("le CDataframe est constitue de %d ligne \n", length_col);
 }
 
 void affiche_nb_col (int length_CDF){
-    printf("le CDataframe est constitue de %d colonne \n", length_CDF);
+    printf("le CDataframe est constitue de %d collone \n", length_CDF);
 }
 
 int nombre_occurence_in_CD(COLUMN ** CDF,int length_line){
@@ -248,7 +248,7 @@ int nombre_occurence_in_CD(COLUMN ** CDF,int length_line){
     return nboccurencetot;
 }
 
-int nombre_valeurs_superieures_in_CD(COLUMN ** CDF,int length_line){
+int nombre_valeurs_supperieures_in_CD(COLUMN ** CDF,int length_line){
     int value;
     printf("veuillez saisir la valeure chercher dans le CDataframe: ");
     scanf("%d", &value);
